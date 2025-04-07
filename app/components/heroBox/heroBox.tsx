@@ -1,33 +1,38 @@
 'use client';
+
 import React from 'react';
-import Card1 from '../card1/Card1';
-import StackedCards from '../StackedCards/stackedCards';
 import { motion } from 'framer-motion';
+import StackedCards from '../StackedCards/stackedCards';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+});
 
 const HeroBox = () => {
   return (
     <div className="relative bg-gradient-to-br from-blue-800 to-blue-500 min-h-screen flex flex-col justify-between">
-      
-      {/* First Section (Text & Stacked Cards) */}
-      <div className="w-full flex flex-col lg:flex-row items-center justify-between max-sm:py-24 px-6 md:px-12 lg:px-20 xl:px-32 min-h-[calc(100vh-64px)]">
+      {/* Section Container */}
+      <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-y-12 gap-x-10 px-6 md:px-10 xl:px-16 py-12 min-h-[calc(100vh-64px)] ">
         
-        {/* Left Section: Text & Button */}
+        {/* Left Section */}
         <motion.div
-          className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left"
+          className={`flex w-full lg:w-1/2 flex-col items-center lg:items-center justify-center text-center lg:text-left px-2 sm:px-4 ${poppins.className}`}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+          <h1 className="text-4xl w-full lg:text-center md:text-5xl font-bold text-white leading-tight ">
             Welcome to <br /> EduTech Solutions
           </h1>
-          <p className="text-lg text-gray-200 mt-4 max-w-lg">
+          <p className="text-lg text-gray-200 mt-4 max-w-lg lg:text-center w-full">
             Transforming education through innovative technology solutions
           </p>
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="mt-6 bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition"
+            className="mt-6 bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition cursor-pointer shadow-md"
           >
             Get Started
           </motion.button>
@@ -35,7 +40,7 @@ const HeroBox = () => {
 
         {/* Right Section: Stacked Cards */}
         <motion.div
-          className="w-full lg:w-1/2 flex justify-center lg:justify-end items-center mt-6 lg:mt-0"
+          className="w-full lg:w-1/2 flex justify-center lg:justify-center items-center h-full"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -44,43 +49,7 @@ const HeroBox = () => {
             <StackedCards />
           </div>
         </motion.div>
-
       </div>
-
-      {/* Second Section: Animated Cards */}
-      <motion.div 
-        className="w-full flex justify-center px-4 md:mt-10 mt-6 z-20"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
-            <div className="w-full sm:w-3/4 lg:w-full">
-              <Card1 
-                title="AI-Powered Learning" 
-                description="Enhance your learning with AI-driven personalized study plans." 
-                buttonText="Explore AI Tools" 
-              />
-            </div>
-            <div className="w-full sm:w-3/4 lg:w-full">
-              <Card1 
-                title="Virtual Classrooms" 
-                description="Engage with interactive online sessions and real-time discussions." 
-                buttonText="Join Now" 
-              />
-            </div>
-            <div className="w-full sm:w-3/4 lg:w-full">
-              <Card1 
-                title="Gamified Education" 
-                description="Boost engagement with fun and interactive learning modules." 
-                buttonText="Start Playing" 
-              />
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
     </div>
   );
 };

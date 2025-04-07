@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const AboutSection: FC = () => {
   return (
-    <section className="flex flex-col-reverse lg:flex-row items-center justify-between py-16 px-6 lg:px-20 bg-white">
+    <section className="flex flex-col-reverse lg:flex-row items-center justify-between py-10 px-6 lg:px-20 bg-white">
       {/* Left Side: Text Section */}
       <div className="lg:w-1/2 w-full mt-10 lg:mt-0 text-center lg:text-left">
         <motion.div
