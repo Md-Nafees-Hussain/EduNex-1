@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 
 const solutions = [
   { title: 'Coding Environment', image: '/resources/solution1.jpg' },
-  { title: 'Educational Apps', image: '/resources/solution2.jpg' },
-  { title: 'All-in-One Meeting App', image: '/resources/solution3.jpg' },
+  { title: 'Educational Apps', image: '/resources/educationalapps.jpg' },
+  { title: 'All-in-One Meeting App', image: '/resources/allinonemeeting.jpg' },
   { title: 'Interactive Learning Tool', image: '/resources/solution4.jpg' },
-  { title: 'Visual Dashboard', image: '/resources/solution5.jpg' },
-  { title: 'Mobile Learning Platform', image: '/resources/seminar.jpg' },
+  { title: 'Visual Dashboard', image: '/resources/Dashboard1.jpeg' },
+  { title: 'Mobile Learning Platform', image: '/resources/mobilelearning.jpg' },
   { title: 'Analytics Dashboard', image: '/resources/solution7.jpg' },
 ];
 

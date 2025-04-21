@@ -11,19 +11,19 @@ const ServicesSection: FC = () => {
       title: "SEO Optimization",
       description: "Enhancing your website's visibility with optimized content and meta tags for better search engine ranking.",
       moreInfo: "We use advanced tools and techniques to boost your search engine ranking and drive more organic traffic to your platform.",
-      image: "/resources/seminar.jpg",  
+      image: "/resources/SEO.png",  
     },
     {
       title: "Web Design",
       description: "Creating modern, responsive websites that engage users and showcase your educational offerings effectively.",
       moreInfo: "We create seamless, attractive, and user-friendly interfaces that leave lasting impressions on your audience.",
-      image: "/resources/codinglaptop.jpg",  
+      image: "/resources/WebDesign.png",  
     },
     {
       title: "CMS",
       description: "Creating modern, responsive websites that engage users and showcase your educational offerings effectively.",
       moreInfo: "We create seamless, attractive, and user-friendly interfaces that leave lasting impressions on your audience.",
-      image: "/resources/seminar.jpg",  
+      image: "/resources/CMS.png",  
     },
   ];
 
