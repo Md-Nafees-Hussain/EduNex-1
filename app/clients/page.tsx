@@ -75,7 +75,66 @@ export default function ClientsPage() {
             Trusted by industry leaders across various sectors.
           </motion.p>
         </section>
+        <section className="py-16 bg-white px-4 md:px-20">
+  <h2 className="text-3xl font-bold text-center mb-10">
+    Success Stories
+  </h2>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {/* Story 1 */}
+    <motion.div
+      className="bg-blue-50 p-6 rounded-lg shadow-md cursor-pointer"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <h3 className="text-xl font-semibold text-blue-800 mb-2">
+        Transforming Rural Learning
+      </h3>
+      <p className="text-gray-700">
+        A school in rural Maharashtra adopted our platform and witnessed a
+        40% increase in student engagement. Teachers now deliver interactive
+        lessons even without internet.
+      </p>
+    </motion.div>
 
+    {/* Story 2 */}
+    <motion.div
+      className="bg-blue-50 p-6 rounded-lg shadow-md cursor-pointer"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+    >
+      <h3 className="text-xl font-semibold text-blue-800 mb-2">
+        Corporate Upskilling Made Easy
+      </h3>
+      <p className="text-gray-700">
+        A leading IT firm integrated our platform for internal training.
+        Within 3 months, over 1,000 employees completed certification
+        programs with a 95% satisfaction rate.
+      </p>
+    </motion.div>
+
+    {/* Story 3 */}
+    <motion.div
+      className="bg-blue-50 p-6 rounded-lg shadow-md"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.4 }}
+    >
+      <h3 className="text-xl font-semibold text-blue-800 mb-2">
+        Empowering Women Entrepreneurs
+      </h3>
+      <p className="text-gray-700">
+        Through our customized modules, over 300 women in tier-2 cities have
+        started their own ventures, applying the skills learned from our
+        business courses.
+      </p>
+    </motion.div>
+  </div>
+</section>
         {/* Stats Section */}
         <section className="py-16 bg-white px-4 md:px-20">
           <h2 className="text-3xl font-bold text-center mb-10">Our Impact in Numbers</h2>
@@ -122,6 +181,11 @@ export default function ClientsPage() {
 </Slider>
           </div>
         </section>
+
+        {/* Success Stories Section */}
+
+
+
 
         {/* Call-to-Action */}
         <section className="py-16 bg-blue-700 text-white text-center">

@@ -57,7 +57,7 @@ const ServicesSection: FC = () => {
               priority={service.image === '/resources/seminar.jpg'}
             />
 
-            <div className={`absolute bottom-0 w-full text-center text-white p-4 transition-all ${activeIndex === index ? 'opacity-0' : 'opacity-100'}`}>  
+            <div className={`absolute bottom-0 w-full text-center text-gray-800 p-4 transition-all ${activeIndex === index ? 'opacity-0' : 'opacity-100'}`}>  
               <h3 className="text-xl font-bold">{service.title}</h3>
             </div>
 

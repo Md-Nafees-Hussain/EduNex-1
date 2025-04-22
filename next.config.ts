@@ -18,6 +18,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "picsum.photos", // For success story images
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com", // For success story images
+      },
     ],
   },
 };

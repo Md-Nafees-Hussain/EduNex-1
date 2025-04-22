@@ -148,36 +148,23 @@ export default function ServicesPage() {
           </div>
         </motion.section>
         <div className="border-t border-gray-300 my-10"></div>
-        {/* CTA Section */}
-        <motion.section
-          className="text-center bg-gradient-to-br from-blue-800 to-blue-500 py-14 rounded-md text-white"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-2xl font-bold">Ready to Build Your Platform?</h2>
-          <div className="flex justify-center mt-4">
-            <Link href="/contact">
-              <motion.button 
-                className="px-6 py-3 text-lg bg-white text-blue-900 font-medium rounded-md cursor-pointer flex items-center gap-2 overflow-hidden relative"
-                whileHover="hover"
-              >
-                Contact Us
-                <motion.span 
-                  className="inline-block"
-                  initial={{ x: -10, opacity: 0 }}
-                  variants={{
-                    hover: { x: 0, opacity: 1, transition: { duration: 0.2 } }
-                  }}
-                >
-                  <ArrowRight className="w-5 h-5 text-blue-900" />
-                </motion.span>
-              </motion.button>
-            </Link>
-          </div>
-        </motion.section>
+        {/* CTA Section inside the Container with negative margins */}
+
+
       </div>
+      <section className="py-16 bg-blue-700 text-white text-center -mx-6 md:-mx-12 lg:-mx-24">
+  <h2 className="text-3xl font-bold">Ready to Work with Us?</h2>
+  <p className="mt-4">Let's build the future of education together.</p>
+  <Link href="/contact" passHref>
+    <motion.button
+      whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgba(255, 255, 255, 0.8)" }}
+      whileTap={{ scale: 0.95 }}
+      className="mt-6 bg-white text-blue-700 font-bold py-3 px-6 rounded-lg cursor-pointer"
+    >
+      Contact Us
+    </motion.button>
+  </Link>
+</section>
       <Footer/>
     </div>
   );
