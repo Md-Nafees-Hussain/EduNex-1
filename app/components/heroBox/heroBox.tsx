@@ -10,42 +10,65 @@ const poppins = Poppins({
   weight: ['400', '600', '700', '800'],
 });
 
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { ease: 'easeOut', duration: 0.7 } },
+};
+
 const HeroBox = () => {
   return (
-    <div className="relative bg-gradient-to-br from-blue-800 to-blue-500 min-h-screen flex flex-col justify-between">
-      {/* Section Container */}
-      <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-y-12 gap-x-10 px-6 md:px-10 xl:px-16 py-12 min-h-[calc(100vh-64px)] ">
+    <div className="relative bg-gradient-to-br from-blue-600 to-cyan-500 min-h-screen flex flex-col justify-between">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-y-12 gap-x-10 px-6 sm:px-8 md:px-10 xl:px-16 py-16 min-h-[calc(100vh-64px)]">
         
         {/* Left Section */}
         <motion.div
-          className={`flex w-full lg:w-1/2 flex-col items-center lg:items-center justify-center text-center lg:text-left px-2 sm:px-4 ${poppins.className}`}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`flex w-full lg:w-1/2 flex-col items-center lg:items-start text-center lg:text-left px-2 sm:px-4 ${poppins.className}`}
+          variants={container}
+          initial="hidden"
+          animate="show"
         >
-          <h1 className="text-4xl w-full lg:text-center md:text-5xl font-bold text-white leading-tight ">
+          <motion.h1
+            variants={item}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight drop-shadow-lg"
+          >
             Welcome to <br /> EduTech Solutions
-          </h1>
-          <p className="text-lg text-gray-200 mt-4 max-w-lg lg:text-center w-full">
+          </motion.h1>
+
+          <motion.p
+            variants={item}
+            className="text-base sm:text-lg text-white/90 mt-4 max-w-md sm:max-w-lg w-full"
+          >
             Transforming education through innovative technology solutions
-          </p>
-          <motion.button 
+          </motion.p>
+
+          <motion.button
+            variants={item}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="mt-6 bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition cursor-pointer shadow-md"
+            aria-label="Get Started with EduTech"
+            className="mt-6 hover:cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-3 px-6 rounded-lg hover:brightness-110 transition shadow-md"
           >
             Get Started
           </motion.button>
         </motion.div>
 
-        {/* Right Section: Stacked Cards */}
+        {/* Right Section */}
         <motion.div
-          className="w-full lg:w-1/2 flex justify-center lg:justify-center items-center h-full"
+          className="w-full lg:w-1/2 flex justify-center items-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[450px] flex justify-center">
+          <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[440px] xl:max-w-[500px]">
             <StackedCards />
           </div>
         </motion.div>
