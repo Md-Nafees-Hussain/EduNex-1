@@ -31,8 +31,8 @@ const ServicesSection: FC = () => {
   return (
     <section className="py-16 px-6 lg:px-20 bg-[#f4f8fb] text-center">
       <div className="mb-12">
-        <h2 className="text-4xl font-bold mb-2">Our Services</h2>
-        <p className="text-gray-700 max-w-2xl mx-auto">
+        <h2 className="text-4xl font-bold mb-4 text-center">Our Services</h2>
+        <p className="text-gray-600 text-base sm:text-lg mb-12 text-center max-w-2xl mx-auto">
           Explore our innovative solutions tailored for the education technology sector to enhance learning experiences.
         </p>
       </div>

@@ -1,70 +1,102 @@
 'use client';
-import { FC, useState } from 'react';
+
+import { FC } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const solutions = [
-  { title: 'Coding Environment', image: '/resources/solution1.jpg' },
-  { title: 'Educational Apps', image: '/resources/educationalapps.jpg' },
-  { title: 'All-in-One Meeting App', image: '/resources/allinonemeeting.jpg' },
-  { title: 'Interactive Learning Tool', image: '/resources/solution4.jpg' },
-  { title: 'Visual Dashboard', image: '/resources/Dashboard1.jpeg' },
-  { title: 'Mobile Learning Platform', image: '/resources/mobilelearning.jpg' },
-  { title: 'Analytics Dashboard', image: '/resources/solution7.jpg' },
+  {
+    title: 'Coding Environment',
+    description: 'Launch real-time collaborative code spaces for students.',
+    image: '/resources/Code-Editor-UI.png',
+  },
+  {
+    title: 'Educational Apps',
+    description: 'Custom mobile apps tailored to curriculum and gamified learning.',
+    image: '/resources/Educational-App.png',
+  },
+  {
+    title: 'All-in-One Meeting App',
+    description: 'Seamless video, whiteboard, and screen share in one place.',
+    image: '/resources/All-in-One-Meeting.png',
+  },
+  {
+    title: 'Interactive Learning Tool',
+    description: 'Drag-and-drop modules, quizzes, and simulations for engagement.',
+    image: '/resources/Learning-tool.jpg',
+  },
+  {
+    title: 'Visual Dashboard',
+    description: 'Track student progress, assignments, and assessments at a glance.',
+    image: '/resources/Visual-Dashboard.png',
+  },
+  {
+    title: 'Mobile Learning Platform',
+    description: 'Anytime, anywhere access to lessons with bite-sized content.',
+    image: '/resources/microlearning.png',
+  },
+  {
+    title: 'Analytics Dashboard',
+    description: 'Detailed insights on learner performance and trends.',
+    image: '/resources/Analytics-Dashboard.png',
+  },
 ];
 
 const InnovativeSolutions: FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
   return (
     <motion.section
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease: 'easeInOut' }}
-      className="py-10 px-6 md:py-16 md:px-28 bg-white"
+      initial={{ y: 80, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      viewport={{ once: true }}
+      className="py-16 px-6 md:px-20 bg-white"
     >
-      <h2 className="text-3xl font-bold mb-4 text-center text-gray-900">
-        Innovative Solutions
-      </h2>
-      <p className="text-gray-600 mb-12 text-center">
+      <h2 className="text-4xl font-bold mb-4 text-center">Innovative Solutions</h2>
+      <p className="text-gray-600 text-base sm:text-lg mb-12 text-center max-w-2xl mx-auto">
         Explore our cutting-edge designs and exceptional educational technology offerings.
       </p>
 
-      <div className="columns-1 md:columns-3 gap-4 space-y-4">
-        {solutions.map((solution, index) => {
-          const isActive = activeIndex === index;
-
-          return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="relative rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all group"
-              onClick={() => setActiveIndex(isActive ? null : index)} // Toggle on tap
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+        {solutions.map((solution, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="break-inside-avoid overflow-hidden rounded-2xl shadow-md group relative cursor-pointer"
+          >
+            <div
+              className={`relative w-full overflow-hidden rounded-2xl ${
+                index % 4 === 0
+                  ? 'h-[320px]'
+                  : index % 4 === 1
+                  ? 'h-[260px]'
+                  : index % 4 === 2
+                  ? 'h-[300px]'
+                  : 'h-[240px]'
+              }`}
             >
-              {/* 🖼️ Image */}
               <Image
                 src={solution.image}
                 alt={solution.title}
-                width={400}
-                height={300}
-                className={`w-full h-auto transition-all duration-300 ease-in-out 
-                  ${isActive ? 'brightness-50' : 'group-hover:brightness-50'}`}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
 
-              {/* 📌 Title (Appears on Hover & Tap) */}
-              <h3
-                className={`absolute inset-0 flex items-center justify-center text-white text-xl font-bold 
-                  transition-opacity duration-300 ease-in-out 
-                  ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
-              >
+              {/* Default title - bottom center */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg font-semibold text-center z-10 transition-opacity duration-300 group-hover:opacity-0 px-4 drop-shadow-md">
                 {solution.title}
-              </h3>
-            </motion.div>
-          );
-        })}
+              </div>
+
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-center px-6 transition-opacity duration-300">
+                <h3 className="text-xl font-bold mb-2">{solution.title}</h3>
+                <p className="text-sm max-w-xs opacity-90">{solution.description}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </motion.section>
   );
