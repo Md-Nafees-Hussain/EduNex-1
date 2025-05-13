@@ -6,6 +6,10 @@ import ClientFeedback from "./components/clientFeedback";
 import InnovativeSolutions from "./components/InnovativeSolutions";
 import Footer from "./components/footer";
 import MyComponent from "./components/myComponent";
+import CTA from "./components/CTA";
+import TrustedBy from "./components/trustedBy";
+import ImpactStats from "./components/impactStats";
+import BlogSection from "./components/blogSection";
 
 export default function Home() {
   return (
@@ -31,6 +35,19 @@ export default function Home() {
 
       <MyComponent>
       <InnovativeSolutions/>
+      </MyComponent>
+
+      <MyComponent>
+        <CTA/>
+      </MyComponent>
+      <MyComponent>
+        <TrustedBy/>
+      </MyComponent>
+      <MyComponent>
+        <ImpactStats/>
+      </MyComponent>
+      <MyComponent>
+        <BlogSection/>
       </MyComponent>
 
       <MyComponent>

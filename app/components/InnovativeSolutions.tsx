@@ -49,7 +49,7 @@ const InnovativeSolutions: FC = () => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true }}
-      className="py-16 px-6 md:px-20 bg-white"
+      className="py-16 px-6 md:px-20 bg-[#f4f8fb]"
     >
       <h2 className="text-4xl font-bold mb-4 text-center">Innovative Solutions</h2>
       <p className="text-gray-600 text-base sm:text-lg mb-12 text-center max-w-2xl mx-auto">

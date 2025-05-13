@@ -6,7 +6,7 @@ import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/f
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const NAV_ITEMS = ['home', 'services', 'clients', 'contact'];
+const NAV_ITEMS = ['home', 'services', 'clients','blog', 'contact'];
 
 const SOCIAL_ICONS = [
   { Icon: FaFacebook, label: 'Facebook' },
