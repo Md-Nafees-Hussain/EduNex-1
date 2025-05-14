@@ -1,12 +1,14 @@
 'use client';
+
 import { FC, useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { X, Menu } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link'; // ✅ added for client routing
 
-const NAV_ITEMS = ['home', 'services', 'clients','blog', 'contact'];
+const NAV_ITEMS = ['home', 'services', 'clients', 'blog', 'contact'];
 
 const SOCIAL_ICONS = [
   { Icon: FaFacebook, label: 'Facebook' },
@@ -56,11 +58,23 @@ const Navbar: FC = () => {
           >
             <AnimatePresence mode="wait" initial={false}>
               {isMobileMenuOpen ? (
-                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <X className="w-6 h-6 text-white" />
                 </motion.div>
               ) : (
-                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <Menu className="w-6 h-6" />
                 </motion.div>
               )}
@@ -95,13 +109,15 @@ const Navbar: FC = () => {
               const path = item === 'home' ? '/' : `/${item}`;
               const isActive = pathname === path;
               return (
-                <a
+                <Link
                   key={item}
                   href={path}
-                  className={`cursor-pointer transition-all hover:underline ${isActive ? 'font-bold underline text-black' : 'text-gray-700'}`}
+                  className={`cursor-pointer transition-all hover:underline ${
+                    isActive ? 'font-bold underline text-black' : 'text-gray-700'
+                  }`}
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
-                </a>
+                </Link>
               );
             })}
           </div>

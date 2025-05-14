@@ -1,14 +1,18 @@
-// lib/firebase.ts
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyAQ3EsDkkQ6baqNs-Ao_SJ3mrsps4LUJZU",
+  authDomain: "edunex-7bdf6.firebaseapp.com",
+  projectId: "edunex-7bdf6",
+  storageBucket: "edunex-7bdf6.firebasestorage.app",
+  messagingSenderId: "192918713500",
+  appId: "1:192918713500:web:82b713008d086630c1e959",
+  measurementId: "G-MSJYYN8S8G"
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();

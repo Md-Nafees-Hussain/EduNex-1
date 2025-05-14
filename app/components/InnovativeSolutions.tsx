@@ -49,7 +49,7 @@ const InnovativeSolutions: FC = () => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
       viewport={{ once: true }}
-      className="py-16 px-6 md:px-20 bg-[#f4f8fb]"
+      className="py-16 px-6 md:px-20 bg-[#f0fdfa]"
     >
       <h2 className="text-4xl font-bold mb-4 text-center">Innovative Solutions</h2>
       <p className="text-gray-600 text-base sm:text-lg mb-12 text-center max-w-2xl mx-auto">
@@ -81,15 +81,14 @@ const InnovativeSolutions: FC = () => {
                 src={solution.image}
                 alt={solution.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
 
-              {/* Default title - bottom center */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg font-semibold text-center z-10 transition-opacity duration-300 group-hover:opacity-0 px-4 drop-shadow-md">
                 {solution.title}
               </div>
 
-              {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black/60 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-center px-6 transition-opacity duration-300">
                 <h3 className="text-xl font-bold mb-2">{solution.title}</h3>
                 <p className="text-sm max-w-xs opacity-90">{solution.description}</p>

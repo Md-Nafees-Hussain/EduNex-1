@@ -1,67 +1,94 @@
 'use client';
 
-import { FC } from 'react';
-import { FaFacebookF, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter, FaArrowUp } from 'react-icons/fa6';
 
-const Footer: FC = () => {
+const Footer = () => {
+  const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    const toggleScroll = () => setShowScroll(window.scrollY > 300);
+    window.addEventListener('scroll', toggleScroll);
+    return () => window.removeEventListener('scroll', toggleScroll);
+  }, []);
+
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <motion.footer
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="bg-gray-900 text-white py-24 px-6"
-    >
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-[#0f172a] text-white relative">
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+        {/* Branding + Logo */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Innovate</h2>
-          <p className="font-medium text-gray-300 mb-4">Empowering education through technology and design.</p>
-          <div className="flex space-x-4 mb-4">
-            <button className="bg-black px-5 py-3 rounded-2xl cursor-pointer hover:bg-gray-700 transition-all">About</button>
-            <button className="bg-black px-5 py-3 rounded-2xl cursor-pointer hover:bg-gray-700 transition-all">Careers</button>
-          </div>
-          <div className="flex space-x-6 text-white">
-            {[FaFacebookF, FaInstagram, FaTiktok, FaTwitter].map((Icon, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5, scale: 1.1, rotate: 10 }}
-                className="w-8 h-8 cursor-pointer text-white hover:text-gray-400 transition-all duration-100 ease-in-out"
-              >
-                <Icon size={30} />
-              </motion.div>
-            ))}
-          </div>
+          <Image
+            src="/resources/EduNexLogo-white.svg"
+            alt="EduNex Logo"
+            width={50}
+            height={50}
+            className="mb-3"
+          />
+          <p className="text-sm text-gray-400">Empowering learning through modern tech solutions.</p>
         </div>
 
+        {/* Sitemap Links */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Trust</h2>
-          <p className="text-gray-300 mb-2">+91-9031847049</p>
-          <p className="text-gray-300 mb-4">contact@edunexservices.com</p>
-          <button className="bg-black px-5 py-3 rounded-2xl cursor-pointer hover:bg-gray-700 transition-all">Contact</button>
+          <h4 className="font-semibold mb-3 text-base text-white">Explore</h4>
+          <ul className="space-y-2 text-gray-400">
+            <li><Link href="/" className="hover:underline">Home</Link></li>
+            <li><Link href="/services" className="hover:underline">Services</Link></li>
+            <li><Link href="/clients" className="hover:underline">Clients</Link></li>
+            <li><Link href="/blog" className="hover:underline">Blog</Link></li>
+            <li><Link href="/contact" className="hover:underline">Contact</Link></li>
+          </ul>
         </div>
 
+        {/* Legal */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Excellence</h2>
-          <p className="text-gray-300 mb-4">Enter your email address</p>
-          <div className="flex items-center mb-4 bg-white rounded-full shadow-lg overflow-hidden">
-            <input 
-              type="email" 
-              placeholder="Your email for updates" 
-              className="px-5 py-3 outline-none w-full text-black focus:ring-2 focus:ring-blue-500 rounded-l-full"
+          <h4 className="font-semibold mb-3 text-base text-white">Legal</h4>
+          <ul className="space-y-2 text-gray-400">
+            <li><Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link></li>
+            <li><Link href="/terms" className="hover:underline">Terms & Conditions</Link></li>
+          </ul>
+        </div>
+
+        {/* Newsletter */}
+        <div>
+          <h4 className="font-semibold mb-3 text-base text-white">Subscribe</h4>
+          <p className="text-gray-400 text-sm mb-4">Get the latest insights and updates from EduNex.</p>
+          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 text-sm rounded bg-white text-black placeholder-gray-500"
             />
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-blue-600 text-white px-7 py-3 cursor-pointer hover:bg-blue-700 transition-all rounded-r-full border-none outline-none"
+            <button
+              type="submit"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm px-4 py-2 rounded"
             >
-              Submit
-            </motion.button>
-          </div>
+              Subscribe
+            </button>
+          </form>
         </div>
       </div>
 
-      <div className="text-center mt-8 text-gray-400">© 2025. All rights reserved.</div>
-    </motion.footer>
+      <div className="border-t border-white/10 px-6 py-4 text-center text-xs text-gray-400">
+        © {new Date().getFullYear()} EduNex. All rights reserved.
+      </div>
+
+      {/* Scroll to Top */}
+      {showScroll && (
+        <button
+          onClick={handleScrollTop}
+          className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 p-3 rounded-full shadow-md text-white"
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp className="w-4 h-4" />
+        </button>
+      )}
+    </footer>
   );
 };
 

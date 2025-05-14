@@ -20,36 +20,28 @@ export default function BlogPost() {
   const [post, setPost] = useState<BlogPost | null | undefined>(null);
 
   useEffect(() => {
-    const fetchPost = async () => {
-      if (!slug) {
-        console.warn('🚫 Slug is missing');
-        return;
+  const fetchPost = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, 'blogs'));
+      const posts = snapshot.docs.map((doc) => doc.data());
+      console.log('🔥 All posts from Firestore:', posts);
+
+      const matched = posts.find((p: any) => p.slug === slug);
+      if (matched) {
+        setPost(matched as BlogPost);
+      } else {
+        setPost(undefined); // Triggers "Post not found"
       }
+    } catch (error) {
+      console.error('🔥 Firestore fetch error:', error);
+      setPost(undefined);
+    }
+  };
 
-      console.log('🔍 Slug from useParams():', slug);
+  if (slug) fetchPost();
+}, [slug]);
 
-      try {
-        const q = query(collection(db, 'blogs'), where('slug', '==', slug));
-        const snapshot = await getDocs(q);
 
-        console.log('📦 Documents found:', snapshot.docs.length);
-
-        if (!snapshot.empty) {
-          const data = snapshot.docs[0].data();
-          console.log('✅ Blog post data:', data);
-          setPost(data as BlogPost);
-        } else {
-          console.warn('⚠️ No blog post found for slug:', slug);
-          setPost(undefined); // triggers "not found" view
-        }
-      } catch (err) {
-        console.error('❌ Firestore fetch error:', err);
-        setPost(undefined);
-      }
-    };
-
-    fetchPost();
-  }, [slug]);
 
   // ⏳ Loading state
   if (post === null) {

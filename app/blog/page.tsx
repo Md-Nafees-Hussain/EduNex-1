@@ -1,29 +1,38 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../components/navbar/navBar';
+import { db } from '../lib/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
-const blogs = [
-  {
-    title: 'Benefits of EdTech in Modern Classrooms',
-    slug: 'benefits-of-edtech',
-    summary: 'How EdTech is reshaping education for students and teachers.',
-    date: 'May 10, 2025',
-    category: 'EdTech',
-    image: '/blog/edtech-classroom.jpg',
-  },
-  {
-    title: 'Top Online Learning Tools in 2025',
-    slug: 'online-learning-tools-2025',
-    summary: 'Explore the most powerful tools enhancing digital learning.',
-    date: 'May 3, 2025',
-    category: 'Tools',
-    image: '/blog/learning-tools.jpg',
-  },
-];
+type BlogPost = {
+  title: string;
+  slug: string;
+  summary: string;
+  date: string;
+  category: string;
+  image?: string;
+};
 
 export default function BlogPage() {
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, 'blogs'));
+        const data = snapshot.docs.map((doc) => doc.data() as BlogPost);
+        setBlogs(data);
+      } catch (error) {
+        console.error('❌ Error fetching blogs:', error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -35,13 +44,15 @@ export default function BlogPage() {
               key={i}
               className="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-transform hover:scale-[1.01]"
             >
-              <Image
-                src={blog.image}
-                alt={blog.title}
-                width={800}
-                height={400}
-                className="w-full h-48 object-cover"
-              />
+              {blog.image && (
+                <Image
+                  src={blog.image}
+                  alt={blog.title}
+                  width={800}
+                  height={400}
+                  className="w-full h-48 object-cover"
+                />
+              )}
               <div className="p-6">
                 <span className="inline-block text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full mb-2">
                   {blog.category}

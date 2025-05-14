@@ -10,6 +10,7 @@ import CTA from "./components/CTA";
 import TrustedBy from "./components/trustedBy";
 import ImpactStats from "./components/impactStats";
 import BlogSection from "./components/blogSection";
+import FaqSection from "./components/faq/FaqSection";
 
 export default function Home() {
   return (
@@ -48,6 +49,9 @@ export default function Home() {
       </MyComponent>
       <MyComponent>
         <BlogSection/>
+      </MyComponent>
+      <MyComponent>
+        <FaqSection/>
       </MyComponent>
 
       <MyComponent>

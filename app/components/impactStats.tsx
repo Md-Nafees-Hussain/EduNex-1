@@ -41,8 +41,8 @@ const Counter: FC<{ value: number; suffix?: string }> = ({ value, suffix }) => {
 
 const ImpactStats: FC = () => {
   return (
-    <section className="bg-[#f8fafc] py-16 px-6 md:px-20 text-center">
-      <h2 className="text-3xl font-bold mb-4 text-gray-800">Our Impact at a Glance</h2>
+    <section className="bg-white py-16 px-6 md:px-20 text-center">
+      <h2 className="text-4xl font-bold mb-4 text-center">Our Impact at a Glance</h2>
       <p className="text-gray-600 text-base sm:text-lg mb-12 max-w-xl mx-auto">
         Numbers that reflect our commitment to transforming education through innovation.
       </p>

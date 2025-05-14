@@ -29,7 +29,7 @@ const ServicesSection: FC = () => {
   ];
 
   return (
-    <section className="py-16 px-6 lg:px-20 bg-[#f4f8fb] text-center">
+    <section className="py-16 px-6 lg:px-20 bg-[#f0fdfa] text-center">
       <div className="mb-12">
         <h2 className="text-4xl font-bold mb-4 text-center">Our Services</h2>
         <p className="text-gray-600 text-base sm:text-lg mb-12 text-center max-w-2xl mx-auto">

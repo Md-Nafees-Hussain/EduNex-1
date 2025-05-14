@@ -22,8 +22,8 @@ const bottomRowLogos = allLogos.slice(5);
 
 const TrustedBy: FC = () => {
   return (
-    <section className="bg-[#f4f8fb] py-16 px-6 md:px-20">
-      <h2 className="text-center text-2xl sm:text-3xl font-bold mb-10 text-gray-800">
+    <section className="bg-[#f0fdfa] py-16 px-6 md:px-20">
+      <h2 className="text-center text-4xl sm:text-4xl font-bold mb-16 text-gray-800">
         Trusted by Leading Institutions
       </h2>
 
