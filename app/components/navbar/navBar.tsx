@@ -140,61 +140,74 @@ const Navbar: FC = () => {
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-blue-950/95 backdrop-blur-md z-40 flex flex-col w-[80%] h-full p-4"
+        <AnimatePresence>
+  <AnimatePresence>
+  {isMobileMenuOpen && (
+    <motion.div
+      key="mobile-menu"
+      initial={{ x: '-100%' }}
+      animate={{ x: 0 }}
+      exit={{ x: '-100%' }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 bg-blue-950/95 backdrop-blur-md z-40 flex flex-col w-[80%] h-full p-4"
+    >
+      {/* Nav Items */}
+      <div className="flex flex-col items-start gap-5 mt-14 text-white">
+        {NAV_ITEMS.map((item) => (
+          <motion.button
+            key={item}
+            whileHover={{ scale: 1.02, x: 5 }}
+            className="text-xl cursor-pointer hover:text-emerald-300 drop-shadow-sm text-left transition-colors duration-200"
+            onClick={() => handleNavigation(item)}
           >
-            <div className="flex flex-col items-start gap-4 mt-14 text-white">
-              {NAV_ITEMS.map((item) => (
-                <motion.button
-                  key={item}
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  className="text-lg cursor-pointer hover:underline text-left"
-                  onClick={() => handleNavigation(item)}
-                >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </motion.button>
-              ))}
-            </div>
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </motion.button>
+        ))}
+      </div>
 
-            <div className="flex gap-6 mt-8 text-white">
-              {SOCIAL_ICONS.map(({ Icon, label }, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  aria-label={`Visit us on ${label}`}
-                  whileHover={{ y: -5 }}
-                >
-                  <Icon className="w-7 h-7 cursor-pointer" />
-                </motion.a>
-              ))}
-            </div>
+      {/* Divider */}
+      <hr className="my-6 border-white/20 w-full" />
 
-            <div className="flex gap-4 mt-auto mb-2 p-2 w-full">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleNavigation('signup')}
-                className="bg-emerald-600 text-white py-2 px-4 rounded hover:bg-emerald-700 w-full"
-              >
-                Sign Up
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleNavigation('login')}
-                className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 w-full"
-              >
-                Login
-              </motion.button>
-            </div>
-          </motion.div>
-        )}
+      {/* Social Icons */}
+      <div className="flex gap-6 text-white">
+        {SOCIAL_ICONS.map(({ Icon, label }, i) => (
+          <motion.a
+            key={i}
+            href="#"
+            aria-label={`Visit us on ${label}`}
+            whileHover={{ y: -5 }}
+            className="hover:text-emerald-400 transition"
+          >
+            <Icon className="w-7 h-7" />
+          </motion.a>
+        ))}
+      </div>
+
+      {/* Auth Buttons */}
+      <div className="flex gap-4 mt-auto mb-2 p-2 w-full">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => handleNavigation('signup')}
+          className="bg-emerald-600 text-white py-2 px-4 rounded hover:bg-emerald-700 w-full"
+        >
+          Sign Up
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => handleNavigation('login')}
+          className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 w-full"
+        >
+          Login
+        </motion.button>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+</AnimatePresence>
+
       </AnimatePresence>
     </motion.nav>
   );
