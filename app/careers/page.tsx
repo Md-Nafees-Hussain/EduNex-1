@@ -2,14 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Lottie from 'lottie-react';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import Navbar from "../components/navbar/navBar";
-import Footer from "../components/footer";
+import dynamic from 'next/dynamic';
+import Navbar from '../components/navbar/navBar';
+import Footer from '../components/footer';
+
+// Dynamically import LottiePlayer with SSR disabled
+const LottiePlayer = dynamic(() => import('../components/LottiePlayer'), {
+  ssr: false,
+});
 
 export default function CareersPage() {
-  const [animationData, setAnimationData] = useState<any>(null);
+  const [animationData, setAnimationData] = useState<object | null>(null);
 
   useEffect(() => {
     fetch('/resources/animations/Teamwork.json')
@@ -59,7 +64,7 @@ export default function CareersPage() {
           </p>
         </motion.section>
 
-        {/* Why Us */}
+        {/* Why Work With Us */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -83,15 +88,7 @@ export default function CareersPage() {
             transition={{ duration: 0.5 }}
             className="w-full h-64 flex items-center justify-center"
           >
-            {animationData ? (
-              <Lottie
-                animationData={animationData}
-                loop
-                className="w-full h-full max-w-md"
-              />
-            ) : (
-              <p className="text-gray-400">Loading animation...</p>
-            )}
+            {animationData && <LottiePlayer animationData={animationData} />}
           </motion.div>
         </motion.section>
 
@@ -120,39 +117,6 @@ export default function CareersPage() {
             ))}
           </div>
         </motion.section>
-
-        {/* Perks */}
-        <motion.section
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="text-center"
->
-  <h2 className="text-2xl font-semibold mb-6">Perks & Benefits</h2>
-
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-    {[
-      { icon: '🏖️', label: 'Flexible Time Off' },
-      { icon: '💻', label: 'Remote Friendly' },
-      { icon: '📈', label: 'Career Growth' },
-      { icon: '🧠', label: 'Learning Budget' },
-    ].map((perk, idx) => (
-      <motion.div
-        key={idx}
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: 'spring', stiffness: 300 }}
-        className="p-6 rounded-2xl bg-white border border-gray-200 shadow-md hover:shadow-lg transition"
-      >
-        <div className="mx-auto mb-4 flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 text-2xl">
-          {perk.icon}
-        </div>
-        <div className="text-gray-800 font-medium text-base">{perk.label}</div>
-      </motion.div>
-    ))}
-  </div>
-        </motion.section>
-
 
         {/* CTA */}
         <motion.section
