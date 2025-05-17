@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link'; // ✅ added for client routing
 
-const NAV_ITEMS = ['home', 'services', 'clients', 'blog', 'contact'];
+const NAV_ITEMS = ['home', 'services', 'clients', 'blog', 'contact', 'careers'];
 
 const SOCIAL_ICONS = [
   { Icon: FaFacebook, label: 'Facebook' },

@@ -37,11 +37,12 @@ const HeroBox = () => {
           animate="show"
         >
           <motion.h1
-            variants={item}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight drop-shadow-lg"
-          >
-            Welcome to <br /> EduTech Solutions
+          variants={item}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/80 drop-shadow-md"
+        >
+          Welcome to <br /> EduTech Solutions
           </motion.h1>
+
 
           <motion.p
             variants={item}

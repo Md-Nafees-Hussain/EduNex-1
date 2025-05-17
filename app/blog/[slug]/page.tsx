@@ -5,6 +5,8 @@ import { useParams } from 'next/navigation';
 import { db } from '../../lib/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import Image from 'next/image';
+import Navbar from '@/app/components/navbar/navBar';
+import Footer from '@/app/components/footer';
 
 type BlogPost = {
   title: string;
@@ -55,7 +57,9 @@ export default function BlogPost() {
 
   // ✅ Render blog post
   return (
-    <div className="max-w-4xl mx-auto px-4 py-16">
+    <div>
+      <Navbar/>
+      <div className="max-w-4xl mx-auto px-4 py-16">
       {post.image && (
         <div className="relative w-full aspect-video mb-6">
           <Image
@@ -76,6 +80,8 @@ export default function BlogPost() {
           <p key={i}>{para}</p>
         ))}
       </article>
+    </div>
+      <Footer/>
     </div>
   );
 }

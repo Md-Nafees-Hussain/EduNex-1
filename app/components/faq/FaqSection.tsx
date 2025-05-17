@@ -40,22 +40,26 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="bg-white py-20 px-4 md:px-8">
-      <div className="max-w-4xl mx-auto text-center mb-12">
+    <section className="bg-white py-20">
+      {/* Heading stays centered */}
+      <div className="max-w-4xl mx-auto text-center mb-12 px-4">
         <h2 className="text-4xl font-bold">Frequently Asked Questions</h2>
         <p className="text-gray-600 mt-2">
           Answers to some common queries about EduNex and our solutions.
         </p>
       </div>
 
-      <div className="max-w-2xl mx-auto space-y-4">
+      {/* FAQ Blocks now go full width with screen padding */}
+      <div className="w-full space-y-4 text-left px-4 md:px-8">
         {faqs.map((faq, i) => (
-          <div key={i} className="border rounded-xl p-4 bg-gray-50">
+          <div key={i} className="border rounded-xl bg-gray-50 w-full overflow-hidden">
             <button
               onClick={() => toggle(i)}
-              className="w-full flex items-center justify-between text-left"
+              className="w-full px-6 py-3 flex items-center justify-between text-left"
             >
-              <span className="font-medium text-gray-800">{faq.question}</span>
+              <span className="font-semibold text-lg text-gray-800 flex-1">
+                {faq.question}
+              </span>
               <motion.span
                 animate={{ rotate: openIndex === i ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
@@ -65,19 +69,21 @@ export default function FaqSection() {
             </button>
 
             <AnimatePresence initial={false}>
-              {openIndex === i && (
-                <motion.div
-                  key="content"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="overflow-hidden mt-3 text-gray-600"
-                >
-                  {faq.answer}
-                </motion.div>
-              )}
-            </AnimatePresence>
+  {openIndex === i && (
+    <motion.div
+      key="content"
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease: 'easeInOut' }}
+      className="px-6 pb-5 text-gray-600"
+    >
+      {faq.answer}
+    </motion.div>
+  )}
+</AnimatePresence>
+
           </div>
         ))}
       </div>

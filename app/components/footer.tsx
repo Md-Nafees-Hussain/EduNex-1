@@ -3,7 +3,14 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter, FaArrowUp } from 'react-icons/fa6';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedinIn,
+  FaXTwitter,
+  FaArrowUp,
+} from 'react-icons/fa6';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   const [showScroll, setShowScroll] = useState(false);
@@ -20,7 +27,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#0f172a] text-white relative">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-24 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Branding + Logo */}
         <div>
           <Image
@@ -30,7 +37,25 @@ const Footer = () => {
             height={50}
             className="mb-3"
           />
-          <p className="text-sm text-gray-400">Empowering learning through modern tech solutions.</p>
+          <p className="text-sm text-gray-400">
+            Empowering learning through modern tech solutions.
+          </p>
+
+          {/* Social Icons */}
+          <div className="flex space-x-4 mt-4">
+            <Link href="#" aria-label="Facebook" className="hover:text-emerald-400">
+              <FaFacebook />
+            </Link>
+            <Link href="#" aria-label="Instagram" className="hover:text-emerald-400">
+              <FaInstagram />
+            </Link>
+            <Link href="#" aria-label="LinkedIn" className="hover:text-emerald-400">
+              <FaLinkedinIn />
+            </Link>
+            <Link href="#" aria-label="Twitter" className="hover:text-emerald-400">
+              <FaXTwitter />
+            </Link>
+          </div>
         </div>
 
         {/* Sitemap Links */}
@@ -42,6 +67,7 @@ const Footer = () => {
             <li><Link href="/clients" className="hover:underline">Clients</Link></li>
             <li><Link href="/blog" className="hover:underline">Blog</Link></li>
             <li><Link href="/contact" className="hover:underline">Contact</Link></li>
+            <li><Link href="/careers" className="hover:underline">Careers</Link></li>
           </ul>
         </div>
 
@@ -57,7 +83,9 @@ const Footer = () => {
         {/* Newsletter */}
         <div>
           <h4 className="font-semibold mb-3 text-base text-white">Subscribe</h4>
-          <p className="text-gray-400 text-sm mb-4">Get the latest insights and updates from EduNex.</p>
+          <p className="text-gray-400 text-sm mb-4">
+            Get the latest insights and updates from EduNex.
+          </p>
           <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
@@ -74,19 +102,25 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-6 py-4 text-center text-xs text-gray-400">
+      {/* Gradient Divider */}
+      <div className="h-px bg-gradient-to-r from-cyan-500 via-blue-600 to-transparent w-full" />
+
+      <div className="px-6 lg:px-24 py-4 text-center text-xs text-gray-400 border-t border-white/10">
         © {new Date().getFullYear()} EduNex. All rights reserved.
       </div>
 
       {/* Scroll to Top */}
       {showScroll && (
-        <button
+        <motion.button
           onClick={handleScrollTop}
-          className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 p-3 rounded-full shadow-md text-white"
+          className="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 p-3 rounded-full shadow-md text-white z-50"
           aria-label="Scroll to top"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
         >
           <FaArrowUp className="w-4 h-4" />
-        </button>
+        </motion.button>
       )}
     </footer>
   );
