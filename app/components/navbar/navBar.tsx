@@ -186,21 +186,23 @@ const Navbar: FC = () => {
       {/* Auth Buttons */}
       <div className="flex gap-4 mt-auto mb-2 p-2 w-full">
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => handleNavigation('signup')}
-          className="bg-emerald-600 text-white py-2 px-4 rounded hover:bg-emerald-700 w-full"
-        >
-          Sign Up
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => handleNavigation('login')}
-          className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 w-full"
-        >
-          Login
-        </motion.button>
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  onClick={() => handleNavigation('signup')}
+  className="w-full py-2 px-4 rounded-md bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-medium tracking-wide shadow hover:brightness-110 transition"
+>
+  Sign Up
+</motion.button>
+
+<motion.button
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  onClick={() => handleNavigation('login')}
+  className="w-full py-2 px-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium tracking-wide shadow hover:brightness-110 transition"
+>
+  Login
+</motion.button>
+
       </div>
     </motion.div>
   )}

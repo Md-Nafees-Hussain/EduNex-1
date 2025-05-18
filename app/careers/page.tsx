@@ -133,6 +133,7 @@ export default function CareersPage() {
           </Link>
         </motion.section>
       </main>
+      
 
       <Footer />
     </div>
