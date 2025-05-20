@@ -18,75 +18,61 @@ const faqs = [
   {
     question: 'Can I track student performance in real-time?',
     answer:
-      'Absolutely. The built-in analytics dashboard provides live data on student engagement, assignments, and assessment progress.',
-  },
-  {
-    question: 'Do you support mobile learning?',
-    answer:
-      'Yes, all EduNex tools are mobile-responsive and accessible through our dedicated apps and web platform.',
-  },
-  {
-    question: 'How do I get started with EduNex?',
-    answer:
-      'Just visit our contact page or request a demo to connect with our onboarding team. We’ll guide you every step of the way.',
+      'Absolutely. The built-in dashboard provides real-time analytics on attendance, assignments, and communication with parents.',
   },
 ];
 
 export default function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section className="bg-white py-20">
-      {/* Heading stays centered */}
-      <div className="max-w-4xl mx-auto text-center mb-12 px-4">
-        <h2 className="text-4xl font-bold">Frequently Asked Questions</h2>
-        <p className="text-gray-600 mt-2">
-          Answers to some common queries about EduNex and our solutions.
-        </p>
-      </div>
+    <section className="max-w-3xl mx-auto px-6 py-16">
+      <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">
+        Frequently Asked Questions
+      </h2>
 
-      {/* FAQ Blocks now go full width with screen padding */}
-      <div className="w-full space-y-4 text-left px-4 md:px-8">
+      <div className="space-y-4">
         {faqs.map((faq, i) => (
-          <div key={i} className="border rounded-xl bg-gray-50 w-full overflow-hidden">
-            <button
-              onClick={() => toggle(i)}
-              className="w-full px-6 py-3 flex items-center justify-between text-left"
-            >
-              <span className="font-semibold text-lg text-gray-800 flex-1">
-                {faq.question}
-              </span>
-              <motion.span
-                animate={{ rotate: openIndex === i ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ChevronDown className="w-5 h-5 text-gray-500" />
-              </motion.span>
-            </button>
-
-            <AnimatePresence initial={false}>
-  {openIndex === i && (
-    <motion.div
-      key="content"
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="px-6 pb-5 text-gray-600"
-    >
-      {faq.answer}
-    </motion.div>
-  )}
-</AnimatePresence>
-
-          </div>
+          <FAQItem key={i} question={faq.question} answer={faq.answer} />
         ))}
       </div>
     </section>
   );
 }
+
+const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div
+      layout
+      className="border border-gray-200 rounded-xl p-4 bg-white shadow-sm"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex justify-between items-center text-left"
+      >
+        <span className="text-gray-900 font-medium text-base">{question}</span>
+        <motion.span
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ChevronDown className="w-5 h-5 text-purple-600" />
+        </motion.span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden text-sm text-gray-600 mt-3"
+          >
+            <div className="pb-2">{answer}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};

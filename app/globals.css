@@ -37,7 +37,7 @@ nav{
 }
 html, body {
     scroll-behavior: smooth;
-    overflow: auto;
+    overflow-x: hidden;
 }
 
 @keyframes scroll-right {

@@ -1,64 +1,58 @@
 'use client';
 
-import { FC } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-const AboutSection: FC = () => {
+export default function AboutSection() {
   return (
-    <section className="flex flex-col-reverse lg:flex-row items-center justify-between py-16 px-6 sm:px-10 lg:px-20 bg-white">
+    <section className="bg-gray-50 py-20 md:py-28 relative overflow-hidden">
+      {/* Decorative Blob Background */}
+      <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-purple-100 rounded-full blur-3xl opacity-30 z-0" />
       
-      {/* Left: Text */}
-      <motion.div
-        className="w-full lg:w-1/2 mt-10 lg:mt-0 text-center lg:text-left"
-        initial={{ opacity: 0, x: -80 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 leading-tight">
-          About Edunex
-        </h2>
-        <p className="text-gray-700 mb-6 font-medium text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0">
-          Innovating education technology with modern design and user-centric solutions for a brighter learning experience.
-        </p>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-6 py-2 text-black border border-black rounded-full hover:bg-black hover:text-white transition duration-300"
-          aria-label="Learn more about Edunex"
+      <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+        
+        {/* Left: Image with badge */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full md:w-1/2 relative"
         >
-          Learn More
-        </motion.button>
-      </motion.div>
+          {/* Floating Badge */}
+          <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full shadow text-sm font-medium text-purple-600 z-20">
+            💡 Interactive Learning
+          </div>
 
-      {/* Right: Unified Mockup Container */}
-      <motion.div
-        className="w-full lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="relative w-full max-w-[480px] rounded-xl overflow-hidden shadow-xl">
-          {/* Desktop UI */}
+          {/* Illustration */}
           <Image
-            src="/resources/desktop-dashboard-mockup.png"
-            alt="Realistic dashboard mockup of Edunex platform"
-            width={1000}
-            height={600}
-            className="rounded-xl object-cover w-full h-auto"
-            priority
+            src="/resources/Seminar-pana.svg" // Replace with actual image path
+            alt="EduNex collaborative learning"
+            width={600}
+            height={400}
+            className="rounded-2xl shadow-xl object-contain"
           />
+        </motion.div>
 
-          {/* Mobile UI Overlay */}
-          {/* Mobile UI Overlay */}
-
-
-        </div>
-      </motion.div>
+        {/* Right: Text */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full md:w-1/2 space-y-6"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Built to Transform How Education Works
+          </h2>
+          <p className="text-gray-600 text-lg">
+            EduNex is designed for the future of learning — combining smart analytics, personalized tools, and real-time insights to elevate outcomes for every stakeholder.
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <li>Empowers educators with real-time dashboards</li>
+            <li>Supports parents with instant updates & communication</li>
+            <li>Tracks student growth with data-backed insights</li>
+          </ul>
+        </motion.div>
+      </div>
     </section>
   );
-};
-
-export default AboutSection;
+}

@@ -1,16 +1,18 @@
 import Navbar from "./components/navbar/navBar";
-import HeroBox from "./components/heroBox/heroBox";
 import AboutSection from "./components/AboutSection";
-import OurServices from "./components/ourServices";
-import ClientFeedback from "./components/clientFeedback";
-import InnovativeSolutions from "./components/InnovativeSolutions";
-import Footer from "./components/footer";
 import MyComponent from "./components/myComponent";
-import CTA from "./components/CTA";
-import TrustedBy from "./components/trustedBy";
-import ImpactStats from "./components/impactStats";
-import BlogSection from "./components/blogSection";
 import FaqSection from "./components/faq/FaqSection";
+import HeroSection from "./components/HeroSection";
+import FeaturesSection from "./components/FeatureSection";
+import PersonasTabsSection from "./components/PersonasTabsSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import ImpactStatsSection from "./components/ImpactStatsSection";
+import CtaLeadFormSection from "./components/CtaLeadFormSection";
+import FeatureGridSection from "./components/FeatureGridSection";
+import PricingSection from "./components/PricingSection";
+import Footer from "./components/footer";
+
+
 
 export default function Home() {
   return (
@@ -19,44 +21,62 @@ export default function Home() {
       <Navbar/>
       
       <MyComponent>
-      <HeroBox/>
+      <HeroSection/>
       </MyComponent>
 
       <MyComponent>
-      <AboutSection/>
+      <AboutSection />
+      </MyComponent>
+    
+
+
+      <MyComponent>
+      <FeaturesSection/>
+      </MyComponent>
+
+    
+      <MyComponent>
+      <PersonasTabsSection />
+      </MyComponent>
+      
+      
+
+
+      <MyComponent>
+      <TestimonialsSection/>
+      </MyComponent>
+
+      
+      <MyComponent>
+      <ImpactStatsSection />
       </MyComponent>
 
       <MyComponent>
-      <OurServices/>
+        <CtaLeadFormSection/>
+      </MyComponent>
+      <MyComponent>
+        <FeatureGridSection/>
       </MyComponent>
 
+    
       <MyComponent>
-      <ClientFeedback/>
+        <PricingSection />
       </MyComponent>
 
-      <MyComponent>
-      <InnovativeSolutions/>
-      </MyComponent>
-
-      <MyComponent>
-        <CTA/>
-      </MyComponent>
-      <MyComponent>
-        <TrustedBy/>
-      </MyComponent>
-      <MyComponent>
-        <ImpactStats/>
-      </MyComponent>
-      <MyComponent>
-        <BlogSection/>
-      </MyComponent>
       <MyComponent>
         <FaqSection/>
       </MyComponent>
 
+     
       <MyComponent>
-      <Footer/>
+        <Footer />
       </MyComponent>
+
+    
+
+      
+
+      
       
     </main>
   );
