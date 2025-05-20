@@ -1,17 +1,35 @@
 'use client';
 
-import Lottie from 'lottie-react';
+import { useEffect, useRef } from 'react';
+import lottie, { AnimationItem } from 'lottie-web';
 
-type LottiePlayerProps = {
-  animationData: object;
+interface LottiePlayerProps {
+  animationData: any;
+  loop?: boolean;
+  className?: string;
+}
+
+const LottiePlayer = ({ animationData, loop = true, className = '' }: LottiePlayerProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationInstance = useRef<AnimationItem | null>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      animationInstance.current = lottie.loadAnimation({
+        container: containerRef.current,
+        renderer: 'svg',
+        loop,
+        autoplay: true,
+        animationData,
+      });
+    }
+
+    return () => {
+      animationInstance.current?.destroy();
+    };
+  }, [animationData, loop]);
+
+  return <div ref={containerRef} className={className} />;
 };
 
-export default function LottiePlayer({ animationData }: LottiePlayerProps) {
-  return (
-    <Lottie
-      animationData={animationData}
-      loop
-      className="w-full h-full max-w-md"
-    />
-  );
-}
+export default LottiePlayer;

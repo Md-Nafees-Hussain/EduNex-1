@@ -3,8 +3,11 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
-import LottiePlayer from './LottiePlayer';
 import animationData from '@/public/resources/animations/feedback.json';
+import dynamic from 'next/dynamic';
+
+const LottiePlayer = dynamic(() => import('./LottiePlayer'), { ssr: false });
+
 
 const testimonials = [
   {

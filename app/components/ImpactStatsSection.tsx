@@ -2,7 +2,9 @@
 
 import { GraduationCap, Building2, Smile, Gauge } from 'lucide-react';
 import { motion } from 'framer-motion';
-import CountUpStat from './CountUpStat';
+import dynamic from 'next/dynamic';
+
+const CountUpStat = dynamic(() => import('./CountUpStat'), { ssr: false });
 
 const stats = [
   {

@@ -21,56 +21,81 @@ export default function Home() {
       <Navbar/>
       
       <MyComponent>
-      <HeroSection/>
+        <HeroSection/>
       </MyComponent>
+      
+      
 
       <MyComponent>
-      <AboutSection />
+        <AboutSection />
       </MyComponent>
+      
+      
     
 
-
       <MyComponent>
-      <FeaturesSection/>
+        <FeaturesSection/>
       </MyComponent>
-
+      
+      
+      
+      <MyComponent>
+        <PersonasTabsSection />
+      </MyComponent>
     
       <MyComponent>
-      <PersonasTabsSection />
+        <TestimonialsSection/>
       </MyComponent>
       
       
-
-
-      <MyComponent>
-      <TestimonialsSection/>
-      </MyComponent>
-
       
       <MyComponent>
-      <ImpactStatsSection />
+        <ImpactStatsSection />
       </MyComponent>
 
+
+      
       <MyComponent>
         <CtaLeadFormSection/>
+
       </MyComponent>
+      
+
+      
+      
+      
       <MyComponent>
+        
         <FeatureGridSection/>
       </MyComponent>
-
-    
       <MyComponent>
         <PricingSection />
-      </MyComponent>
 
+      </MyComponent>
       <MyComponent>
         <FaqSection/>
-      </MyComponent>
 
-     
+      </MyComponent>
       <MyComponent>
         <Footer />
+
       </MyComponent>
+
+      
+      
+      
+      
+
+    
+      
+      
+
+      
+      
+
+     
+      
+      
 
     
 

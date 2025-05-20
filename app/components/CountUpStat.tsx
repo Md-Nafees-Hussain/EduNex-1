@@ -9,7 +9,7 @@ type CountUpStatProps = {
   suffix?: string;
 };
 
-export default function CountUpStat({ end, suffix = '' }: CountUpStatProps) {
+const CountUpStat = ({ end, suffix = '' }: CountUpStatProps) => {
   const spanRef = useRef<HTMLSpanElement>(null);
   const { ref: inViewRef, inView } = useInView({
     triggerOnce: true,
@@ -43,4 +43,6 @@ export default function CountUpStat({ end, suffix = '' }: CountUpStatProps) {
   }
 
   return <span ref={setRefs}>0</span>;
-}
+};
+
+export default CountUpStat;
