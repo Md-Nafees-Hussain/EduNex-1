@@ -75,7 +75,7 @@ export default function HeroSection() {
 
   <div className="w-full aspect-[16/9] relative bg-white p-4">
     <Image
-  src="/resources/dashboard.jpg"
+  src="/resources/community-home.jpg"
   alt="EduNex dashboard preview"
   fill
   priority // 🚀 Improve LCP (above-the-fold)
