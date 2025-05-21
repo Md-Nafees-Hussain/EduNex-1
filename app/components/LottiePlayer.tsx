@@ -1,21 +1,20 @@
 'use client';
-
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import lottie, { AnimationItem } from 'lottie-web';
 
-interface LottiePlayerProps {
+interface Props {
   animationData: any;
   loop?: boolean;
   className?: string;
 }
 
-const LottiePlayer = ({ animationData, loop = true, className = '' }: LottiePlayerProps) => {
+const LottiePlayer = ({ animationData, loop = true, className = '' }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationInstance = useRef<AnimationItem | null>(null);
+  const animationRef = useRef<AnimationItem | null>(null);
 
   useEffect(() => {
     if (containerRef.current) {
-      animationInstance.current = lottie.loadAnimation({
+      animationRef.current = lottie.loadAnimation({
         container: containerRef.current,
         renderer: 'svg',
         loop,
@@ -23,10 +22,7 @@ const LottiePlayer = ({ animationData, loop = true, className = '' }: LottiePlay
         animationData,
       });
     }
-
-    return () => {
-      animationInstance.current?.destroy();
-    };
+    return () => animationRef.current?.destroy();
   }, [animationData, loop]);
 
   return <div ref={containerRef} className={className} />;
