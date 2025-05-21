@@ -38,6 +38,7 @@
     "react-slick": "^0.30.3",
     "react-swipeable": "^7.0.2",
     "react-visibility-sensor": "^5.1.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tailwind-merge": "^3.3.0"
   }
 }

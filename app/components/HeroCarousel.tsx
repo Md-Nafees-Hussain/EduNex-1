@@ -1,106 +1,111 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { PieChart } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { cn } from '../lib/utils'; // Make sure this utility exists
 
-const cards = [
+const slides = [
   {
-    title: 'Smart Dashboard',
-    desc: 'Real-time class analytics, attendance, and parent communication.',
-    image: '/resources/dashboard.jpg',
-    badge: 'Dashboard',
+    title: 'All-in-One Control Dashboard',
+    desc: 'Real-time insights for growth',
+    image: '/resources/Dashboard.jpg',
   },
   {
-    title: 'Attendance Reports',
-    desc: 'Instant attendance insights and trends across all grades.',
+    title: 'Community Dashboard',
+    desc: 'Boost engagement with tools',
     image: '/resources/Community-Home.jpg',
-    badge: 'Reports',
   },
   {
-    title: 'Homework Tracker',
-    desc: 'Track, assign, and review homework with ease.',
+    title: 'Community Posts Center',
+    desc: 'See All Your Community Activities',
     image: '/resources/Community-Posts2.jpg',
-    badge: 'Assignments',
   },
 ];
 
 export default function HeroCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [active, setActive] = useState(0);
+  const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % cards.length);
-    }, 4000); // 4 seconds
-    return () => clearInterval(interval);
-  }, []);
+ useEffect(() => {
+  const interval = setInterval(() => {
+    setActive((prev) => (prev + 1) % slides.length);
+  }, 4000);
 
-  const getPosition = (index: number) => {
-    if (index === activeIndex) return 'center';
-    if ((index + 1) % cards.length === activeIndex) return 'left';
-    if ((index - 1 + cards.length) % cards.length === activeIndex) return 'right';
-    return 'hidden';
+  return () => clearInterval(interval);
+}, [slides.length]);
+
+
+  const handleDotClick = (index: number) => {
+    setActive(index);
+    clearInterval(autoSlideRef.current!);
   };
 
   return (
-    <div className="relative z-10 w-full max-w-[520px] h-[400px] md:h-[500px] overflow-hidden">
-      <div className="relative w-full h-full flex items-center justify-center">
-        {cards.map((card, index) => {
-          const position = getPosition(index);
-
-          let baseStyle = 'absolute top-0 transition-all duration-700 ease-in-out';
-
-          let scale = 0.85;
-          let translateX = 'translate-x-0';
-          let zIndex = 10;
-          let opacity = 0;
-
-          if (position === 'center') {
-            scale = 1;
-            translateX = 'translate-x-0';
-            zIndex = 30;
-            opacity = 1;
-          } else if (position === 'left') {
-            translateX = '-translate-x-[120%] md:-translate-x-[80%]';
-            zIndex = 20;
-            opacity = 0.5;
-          } else if (position === 'right') {
-            translateX = 'translate-x-[120%] md:translate-x-[80%]';
-            zIndex = 20;
-            opacity = 0.5;
-          }
+    <div className="relative w-full max-w-2xl mx-auto overflow-hidden">
+      {/* Carousel Track */}
+      <div
+        className="flex transition-transform ease-in-out duration-500"
+        style={{
+          width: `${slides.length * 100}%`,
+          transform: `translateX(-${active * (100 / slides.length)}%)`,
+        }}
+      >
+        {slides.map((slide, index) => {
+          const isActive = index === active;
+          const isPrev = index === (active - 1 + slides.length) % slides.length;
+          const isNext = index === (active + 1) % slides.length;
 
           return (
-            <motion.div
+            <div
               key={index}
-              className={`${baseStyle} w-[85%] max-w-[380px] mx-auto ${translateX}`}
-              style={{ scale, zIndex, opacity }}
+              className="flex-shrink-0 flex justify-center items-center px-2"
+              style={{ width: `${100 / slides.length}%` }}
             >
-              <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-purple-300 transition-shadow duration-300 overflow-hidden">
-                {/* Badge */}
-                <div className="absolute top-2 right-2 z-20 bg-white px-3 py-1 rounded-full shadow text-sm font-medium text-purple-600 flex items-center gap-2">
-                  <PieChart className="w-4 h-4" />
-                  {card.badge}
-                </div>
+              <motion.div
+  className={cn(
+    ' w-[100%] sm:w-[85%] max-w-md transition-all rounded-xl',
+    isActive
+      ? 'scale-100 opacity-100 z-30'
+      : isPrev || isNext
+      ? 'scale-90 opacity-50 z-20'
+      : 'scale-75 opacity-0 z-10 hidden sm:block'
+  )}
+  whileHover={{
+    scale: 1.03,
+    boxShadow: '0px 6px 18px rgba(128, 90, 213, 0.25)',
+  }}
+>
 
-                <div className="w-full aspect-[16/9] relative bg-white p-4">
+                <div className="w-full h-60 relative mb-4">
                   <Image
-                    src={card.image}
-                    alt={card.title}
+                    src={slide.image}
+                    alt={slide.title}
                     fill
-                    className="object-contain rounded-xl"
+                    className="rounded-xl object-contain"
+                    sizes="(max-width: 768px) 100vw, 500px"
                   />
                 </div>
-
-                <div className="p-5 space-y-1">
-                  <h3 className="text-lg font-semibold text-gray-800">{card.title}</h3>
-                  <p className="text-sm text-gray-500">{card.desc}</p>
-                </div>
-              </div>
-            </motion.div>
+                <h3 className="text-lg font-bold text-gray-900 text-center">{slide.title}</h3>
+                <p className="text-sm text-gray-600 text-center">{slide.desc}</p>
+              </motion.div>
+            </div>
           );
         })}
+      </div>
+
+      {/* Pagination Dots */}
+      <div className="flex justify-center gap-2 mt-5">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => handleDotClick(i)}
+            className={cn(
+              'w-3 h-3 rounded-full transition-all',
+              active === i ? 'bg-purple-600 scale-110' : 'bg-gray-400'
+            )}
+          />
+        ))}
       </div>
     </div>
   );

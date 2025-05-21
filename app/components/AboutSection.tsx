@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { CheckCircle } from 'lucide-react';
 
 export default function AboutSection() {
   return (
@@ -25,7 +26,7 @@ export default function AboutSection() {
 
           {/* Illustration */}
           <Image
-            src="/resources/Seminar-pana.svg" // Replace with actual image path
+            src="/resources/Seminar-pana.svg"
             alt="EduNex collaborative learning"
             width={600}
             height={400}
@@ -46,11 +47,20 @@ export default function AboutSection() {
           <p className="text-gray-600 text-lg">
             EduNex is designed for the future of learning — combining smart analytics, personalized tools, and real-time insights to elevate outcomes for every stakeholder.
           </p>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
-            <li>Empowers educators with real-time dashboards</li>
-            <li>Supports parents with instant updates & communication</li>
-            <li>Tracks student growth with data-backed insights</li>
-          </ul>
+
+          {/* Feature List with Icons */}
+          <div className="space-y-4">
+            {[
+              'Empowers educators with real-time dashboards',
+              'Supports parents with instant updates & communication',
+              'Tracks student growth with data-backed insights',
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start gap-3 text-gray-700">
+                <CheckCircle className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
