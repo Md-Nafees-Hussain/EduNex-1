@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { cn } from '../lib/utils'; // Make sure this utility exists
+import { cn } from '../lib/utils';
 
 const slides = [
   {
@@ -27,14 +27,13 @@ export default function HeroCarousel() {
   const [active, setActive] = useState(0);
   const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
 
- useEffect(() => {
-  const interval = setInterval(() => {
-    setActive((prev) => (prev + 1) % slides.length);
-  }, 4000);
-
-  return () => clearInterval(interval);
-}, [slides.length]);
-
+  // Auto-play
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
   const handleDotClick = (index: number) => {
     setActive(index);
@@ -63,21 +62,20 @@ export default function HeroCarousel() {
               style={{ width: `${100 / slides.length}%` }}
             >
               <motion.div
-  className={cn(
-    ' w-[100%] sm:w-[85%] max-w-md transition-all rounded-xl',
-    isActive
-      ? 'scale-100 opacity-100 z-30'
-      : isPrev || isNext
-      ? 'scale-90 opacity-50 z-20'
-      : 'scale-75 opacity-0 z-10 hidden sm:block'
-  )}
-  whileHover={{
-    scale: 1.03,
-    boxShadow: '0px 6px 18px rgba(128, 90, 213, 0.25)',
-  }}
->
-
-                <div className="w-full h-60 relative mb-4">
+                className={cn(
+                  ' w-full sm:w-[85%] max-w-md transition-all rounded-xl',
+                  isActive
+                    ? 'scale-100 opacity-100 z-30'
+                    : isPrev || isNext
+                    ? 'scale-90 opacity-50 z-20'
+                    : 'scale-75 opacity-0 z-10 hidden sm:block'
+                )}
+                whileHover={{
+                  scale: 1.03,
+                  boxShadow: '0px 6px 18px rgba(128, 90, 213, 0.25)',
+                }}
+              >
+                <div className="w-full h-48 sm:h-60 relative mb-4">
                   <Image
                     src={slide.image}
                     alt={slide.title}
@@ -86,8 +84,17 @@ export default function HeroCarousel() {
                     sizes="(max-width: 768px) 100vw, 500px"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 text-center">{slide.title}</h3>
-                <p className="text-sm text-gray-600 text-center">{slide.desc}</p>
+
+                {/* Slide-in Text Animation */}
+                <motion.div
+                  key={isActive ? 'active-text' : `inactive-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <h3 className="text-lg font-bold text-gray-900 text-center">{slide.title}</h3>
+                  <p className="text-sm text-gray-600 text-center">{slide.desc}</p>
+                </motion.div>
               </motion.div>
             </div>
           );
