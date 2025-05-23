@@ -1,6 +1,5 @@
 'use client';
 
-import { FC } from 'react';
 import Image from 'next/image';
 
 const allLogos = [
@@ -10,54 +9,32 @@ const allLogos = [
   '/resources/logos/apachelucene.svg',
   '/resources/logos/brave.svg',
   '/resources/logos/coze.svg',
+  '/resources/logos/dgraph.svg',
   '/resources/logos/hackerearth.svg',
   '/resources/logos/intermarche.svg',
-  '/resources/logos/ktm.svg',
   '/resources/logos/livejournal.svg',
 ];
 
-
-const topRowLogos = allLogos.slice(0, 5);
-const bottomRowLogos = allLogos.slice(5);
-
-const TrustedBy: FC = () => {
+export default function TrustedBySection() {
   return (
-    <section className="bg-[#f0fdfa] py-16 px-6 md:px-20">
-      <h2 className="text-center text-4xl sm:text-4xl font-bold mb-16 text-gray-800">
-        Trusted by Leading Institutions
-      </h2>
+    <section className="bg-white py-20 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-12">
+          Trusted by Institutions That Care About Impact
+        </h2>
 
-      <div className="overflow-hidden space-y-6">
-        {/* Top Row - Scrolls Right */}
-        <div className="relative w-full">
-          <div className="flex animate-scroll-right gap-12 min-w-max">
-            {[...topRowLogos, ...topRowLogos].map((logo, index) => (
-              <div key={`top-${index}`} className="w-36 h-12 grayscale opacity-70 hover:opacity-100 transition">
+        <div className="overflow-hidden">
+          <div className="flex animate-scroll-left whitespace-nowrap gap-12">
+            {[...allLogos, ...allLogos].map((src, idx) => (
+              <div key={idx} className="flex-shrink-0 w-[10vw] min-w-[100px] flex justify-center items-center">
                 <Image
-                  src={logo}
-                  alt={`Logo ${index + 1}`}
-                  width={144}
-                  height={48}
-                  loading="lazy"
-                  className="object-contain w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+                  src={src}
+                  alt={`logo-${idx}`}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="h-14 w-auto grayscale hover:grayscale-0 transition duration-300 drop-shadow-md hover:drop-shadow-lg"
 
-        {/* Bottom Row - Scrolls Left */}
-        <div className="relative w-full">
-          <div className="flex animate-scroll-left gap-12 min-w-max">
-            {[...bottomRowLogos, ...bottomRowLogos].map((logo, index) => (
-              <div key={`bottom-${index}`} className="w-36 h-12 grayscale opacity-70 hover:opacity-100 transition">
-                <Image
-                  src={logo}
-                  alt={`Logo ${index + 6}`}
-                  width={144}
-                  height={48}
-                  loading="lazy"
-                  className="object-contain w-full h-full"
                 />
               </div>
             ))}
@@ -66,6 +43,4 @@ const TrustedBy: FC = () => {
       </div>
     </section>
   );
-};
-
-export default TrustedBy;
+}

@@ -60,7 +60,7 @@ const services = [
 
 const categories = ['All', 'Schools', 'Parents'];
 
-export default function ServicesPage() {
+export default function Services() {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredServices =
@@ -73,22 +73,47 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-purple-50 py-16 md:py-24 text-center px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto"
-        >
-          <h1 className="text-4xl font-bold text-gray-900">
-            Services that Power Future-Ready Education
-          </h1>
-          <p className="text-gray-600 mt-4 text-lg">
-            EduNex offers a complete suite of tools to empower educators, engage parents,
-            and track student success — all from one unified platform.
-          </p>
-        </motion.div>
+      {/* Hero */}
+      <section className="relative bg-purple-50 py-16 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <nav className="text-sm text-purple-600 font-medium" aria-label="Breadcrumb">
+              <ol className="list-reset flex space-x-2">
+                <li>
+                  <Link href="/" className="hover:underline">Home</Link>
+                </li>
+                <li>/</li>
+                <li aria-current="page" className="text-purple-700 font-semibold">
+                  Services
+                </li>
+              </ol>
+            </nav>
+          </motion.div>
+
+          {/* Heading + Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Services that Power Future-Ready Education
+            </h1>
+            <p className="text-gray-700 text-base md:text-lg">
+              EduNex offers a complete suite of tools to empower educators, engage parents,
+              and track student success — all from one unified platform.
+            </p>
+          </motion.div>
+        </div>
       </section>
+
 
       {/* Service Categories & Cards */}
       <section className="bg-white py-20 md:py-28 px-6 max-w-7xl mx-auto">
