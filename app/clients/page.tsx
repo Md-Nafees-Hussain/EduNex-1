@@ -81,7 +81,7 @@ export default function ClientsPage() {
           </div>
         </section>
         <SupportSection/>
-
+        
 
 
 
@@ -92,6 +92,20 @@ export default function ClientsPage() {
 
         {/* Next: Logo Grid, Testimonials, CTA */}
       </main>
+      <div className="w-full overflow-hidden leading-none rotate-180">
+  <svg
+    viewBox="0 0 1440 120"
+    className="w-full h-[80px] block"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0,0 C480,100 960,20 1440,80 L1440,120 L0,120 Z"
+      fill="#FAF5FF"
+    />
+  </svg>
+      </div>
+
       <Footer />
     </>
   );

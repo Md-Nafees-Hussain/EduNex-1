@@ -42,18 +42,19 @@ const Navbar: FC = () => {
     <motion.nav
       initial={{ y: 0 }}
       animate={{ y: 0 }}
-      className="relative bg-[#0B0B15] text-white sticky top-0 z-50"
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/90 shadow backdrop-blur-md' : 'bg-white'
+      }`}
       role="navigation"
       aria-label="Main Navigation"
     >
-      {/* Main Navbar Content */}
-      <div className="flex items-center justify-between px-4 py-3 md:px-8 max-w-7xl mx-auto">
+      <div className="flex items-center justify-between px-4 py-2">
         {/* Mobile Header */}
         <div className="flex items-center justify-between w-full lg:hidden relative z-50">
           <motion.button
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white"
+            className="text-black"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -66,7 +67,7 @@ const Navbar: FC = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-6 h-6 text-gray-800" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -85,10 +86,10 @@ const Navbar: FC = () => {
           <Image
             src="/resources/EduNexLogo.svg"
             alt="EDUNEX Logo"
-            width={48}
-            height={48}
+            width={60}
+            height={60}
             priority
-            className="cursor-pointer ml-auto rounded-full bg-white p-1 shadow-md"
+            className="cursor-pointer ml-auto"
             onClick={() => handleNavigation('home')}
           />
         </div>
@@ -98,10 +99,10 @@ const Navbar: FC = () => {
           <Image
             src="/resources/EduNexLogo.svg"
             alt="EDUNEX Logo"
-            width={48}
-            height={48}
+            width={60}
+            height={60}
             priority
-            className="cursor-pointer rounded-full bg-white p-1 shadow-md"
+            className="cursor-pointer"
             onClick={() => handleNavigation('home')}
           />
 
@@ -113,8 +114,8 @@ const Navbar: FC = () => {
                 <Link
                   key={item}
                   href={path}
-                  className={`relative text-sm font-medium transition-all hover:text-emerald-400 ${
-                    isActive ? 'text-emerald-400' : 'text-white'
+                  className={`relative text-sm font-medium transition-all hover:text-purple-600 hover:underline ${
+                    isActive ? 'text-purple-600 underline' : 'text-gray-800'
                   }`}
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -130,7 +131,7 @@ const Navbar: FC = () => {
                 href="#"
                 aria-label={`Visit us on ${label}`}
                 whileHover={{ y: -5 }}
-                className="text-white hover:text-emerald-400"
+                className="text-gray-700 hover:text-purple-600"
               >
                 <Icon className="w-5 h-5" />
               </motion.a>
@@ -138,6 +139,25 @@ const Navbar: FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Curved Bottom Divider */}
+      <div className="absolute bottom-0 left-0 w-full leading-none overflow-hidden -z-999">
+  <svg
+    viewBox="0 0 1440 120"
+    className="block w-full h-[120px]"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0,20 
+         C40,20 160,60 320,80 
+         C640,110 1100,80 1440,40 
+         L1440,120 L0,120 Z"
+      fill="#F6EDFF"
+    />
+  </svg>
+</div>
+
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -165,14 +185,14 @@ const Navbar: FC = () => {
 
             <hr className="my-6 border-gray-300 w-full" />
 
-            <div className="flex gap-6 text-white">
+            <div className="flex gap-6 text-gray-700">
               {SOCIAL_ICONS.map(({ Icon, label }, i) => (
                 <motion.a
                   key={i}
                   href="#"
                   aria-label={`Visit us on ${label}`}
                   whileHover={{ y: -4 }}
-                  className="text-white hover:text-emerald-400 transition"
+                  className="hover:text-purple-600 transition"
                 >
                   <Icon className="w-6 h-6" />
                 </motion.a>

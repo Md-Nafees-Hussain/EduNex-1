@@ -72,6 +72,7 @@ export default function SupportSection() {
           ))}
         </div>
       </div>
+      
     </section>
   );
 }
