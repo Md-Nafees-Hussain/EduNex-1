@@ -141,7 +141,7 @@ const Navbar: FC = () => {
       </div>
 
       {/* Curved Bottom Divider */}
-      <div className="absolute bottom-0 left-0 w-full leading-none overflow-hidden -z-999">
+      <div className="absolute bottom-0 left-0 w-full leading-none overflow-hidden -z-999 rotate-180">
   <svg
     viewBox="0 0 1440 120"
     className="block w-full h-[120px]"
