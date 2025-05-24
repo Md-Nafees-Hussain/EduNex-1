@@ -9,7 +9,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 const NAV_ITEMS = ['home', 'services', 'clients', 'blog', 'contact', 'careers'];
-
 const SOCIAL_ICONS = [
   { Icon: FaFacebook, label: 'Facebook' },
   { Icon: FaInstagram, label: 'Instagram' },
@@ -40,21 +39,34 @@ const Navbar: FC = () => {
 
   return (
     <motion.nav
-      initial={{ y: 0 }}
-      animate={{ y: 0 }}
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 shadow backdrop-blur-md' : 'bg-white'
-      }`}
       role="navigation"
       aria-label="Main Navigation"
+      className={`
+        sticky top-0 z-50 relative overflow-hidden
+        transition-shadow duration-300
+        ${isScrolled ? 'shadow-lg' : ''}
+      `}
     >
-      <div className="flex items-center justify-between px-4 py-2">
-        {/* Mobile Header */}
-        <div className="flex items-center justify-between w-full lg:hidden relative z-50">
+      {/* SVG Curve Background */}
+      <svg
+        className="absolute inset-0 w-full h-full -z-10"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,60 C480,0 960,80 1440,60 L1440,0 L0,0 Z"
+          fill="#0d1320"
+        />
+      </svg>
+
+      {/* Nav Content */}
+      <div className="relative z-10 flex items-center justify-between pt-4 pb-11 px-6">
+        {/* Mobile: burger + logo */}
+        <div className="flex items-center justify-between w-full lg:hidden">
           <motion.button
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-black"
+            className="text-white"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -67,7 +79,7 @@ const Navbar: FC = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <X className="w-6 h-6 text-gray-800" />
+                  <X className="w-6 h-6" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -84,20 +96,21 @@ const Navbar: FC = () => {
           </motion.button>
 
           <Image
-            src="/resources/EduNexLogo.svg"
+            src="/resources/naf_logo2.svg"
             alt="EDUNEX Logo"
             width={60}
             height={60}
             priority
-            className="cursor-pointer ml-auto"
+            className="cursor-pointer"
             onClick={() => handleNavigation('home')}
           />
         </div>
 
-        {/* Desktop Header */}
-        <div className="hidden lg:flex items-center justify-between w-full">
+        {/* Desktop: logo | nav items | socials */}
+        <div className="hidden lg:flex items-center w-full">
+          {/* Logo */}
           <Image
-            src="/resources/EduNexLogo.svg"
+            src="/resources/naf_logo2.svg"
             alt="EDUNEX Logo"
             width={60}
             height={60}
@@ -106,7 +119,8 @@ const Navbar: FC = () => {
             onClick={() => handleNavigation('home')}
           />
 
-          <div className="flex items-center gap-6 ml-auto">
+          {/* Nav items */}
+          <div className="flex items-center gap-8 ml-auto">
             {NAV_ITEMS.map((item) => {
               const path = item === 'home' ? '/' : `/${item}`;
               const isActive = pathname === path;
@@ -114,9 +128,13 @@ const Navbar: FC = () => {
                 <Link
                   key={item}
                   href={path}
-                  className={`relative text-sm font-medium transition-all hover:text-purple-600 hover:underline ${
-                    isActive ? 'text-purple-600 underline' : 'text-gray-800'
-                  }`}
+                  className={`
+          text-sm font-medium transition-all
+          ${isActive
+                      ? 'text-[#fff] underline'
+                      : 'text-[#fff]'}
+          hover:underline hover:text-[#fff]
+        `}
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
                 </Link>
@@ -124,14 +142,15 @@ const Navbar: FC = () => {
             })}
           </div>
 
-          <div className="flex items-center gap-4 pr-4 ml-8 mr-4">
+          {/* Social icons */}
+          <div className="flex items-center gap-6 pl-8">
             {SOCIAL_ICONS.map(({ Icon, label }, i) => (
               <motion.a
                 key={i}
                 href="#"
                 aria-label={`Visit us on ${label}`}
-                whileHover={{ y: -5 }}
-                className="text-gray-700 hover:text-purple-600"
+                whileHover={{ y: -4 }}
+                className="text-gray-200 hover:text-white"
               >
                 <Icon className="w-5 h-5" />
               </motion.a>
@@ -140,26 +159,7 @@ const Navbar: FC = () => {
         </div>
       </div>
 
-      {/* Curved Bottom Divider */}
-      <div className="absolute bottom-0 left-0 w-full leading-none overflow-hidden -z-999 rotate-180">
-  <svg
-    viewBox="0 0 1440 120"
-    className="block w-full h-[120px]"
-    preserveAspectRatio="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M0,20 
-         C40,20 160,60 320,80 
-         C640,110 1100,80 1440,40 
-         L1440,120 L0,120 Z"
-      fill="#F6EDFF"
-    />
-  </svg>
-</div>
-
-
-      {/* Mobile Menu */}
+      {/* Mobile slide‐out menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
